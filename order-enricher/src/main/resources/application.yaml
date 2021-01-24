@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: order-enricher-service
+  cloud:
+    stream:
+      kafka:
+        streams:
+          bindings:
+            handleOrderEvent-in-0:
+              consumer:
+                application-id: ${spring.application.name}-outbox.event.Order
+      bindings:
+        enrichOrder-in-0:
+          destination: outbox.event.Order
+          group: ${spring.application.name}-outbox.event.Order
+        enrichOrder-in-1:
+          destination: outbox.event.Customer
+          group: ${spring.application.name}-outbox.event.Customer
+        enrichOrder-in-2:
+          destination: outbox.event.Product
+          group: ${spring.application.name}-outbox.event.Product
+        enrichOrder-out-0:
+          destination: outbox.event.OrderEnrich
+          group: ${spring.application.name}-outbox.event.OrderEnrich
+    function:
+      definition: enrichOrder
+
+server:
+  port: 8081
