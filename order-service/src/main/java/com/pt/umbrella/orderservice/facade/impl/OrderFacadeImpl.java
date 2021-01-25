@@ -31,4 +31,12 @@ public class OrderFacadeImpl implements OrderFacade {
                         .body(BodyInserters
                                 .fromProducer(this.orderService.createOrder(orderDTO), Void.class)));
     }
+
+    @Override
+    public Mono<ServerResponse> updateOrder(ServerRequest serverRequest) {
+        return serverRequest.bodyToMono(OrderDTO.class)
+                .flatMap(orderDTO -> ServerResponse.ok()
+                        .body(BodyInserters
+                                .fromProducer(this.orderService.updateOrder(orderDTO), Void.class)));
+    }
 }

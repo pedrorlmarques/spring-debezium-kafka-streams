@@ -31,6 +31,13 @@ public class OutboxService {
                  * The CDC eventing polls the database log entry and not the table in the database.
                  */
                 .flatMap(outboxRepository::delete)
+//                .then(Mono.just(new Outbox(null,
+//                        "Customer",
+//                        event.getAggregateId(),
+//                        event.getType(),
+//                        event.getPayload().toString())))
+//                .flatMap(outboxRepository::save)
+//                .flatMap(outboxRepository::delete)
                 .subscribe(null, null, () -> log.info("OutBox Event Sent {}", event));
     }
 }

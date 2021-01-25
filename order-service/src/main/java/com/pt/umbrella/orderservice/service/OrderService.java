@@ -9,4 +9,6 @@ public interface OrderService {
     Flux<Orders> fetchOrders();
 
     Mono<Void> createOrder(OrderDTO orderDTO);
+
+    Mono<Void> updateOrder(OrderDTO orderDTO);
 }

@@ -10,4 +10,5 @@ public interface OrderFacade {
 
     Mono<ServerResponse> createOrder(ServerRequest serverRequest);
 
+    Mono<ServerResponse> updateOrder(ServerRequest serverRequest);
 }

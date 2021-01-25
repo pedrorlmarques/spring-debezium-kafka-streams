@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import static org.springframework.http.MediaType.*;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
+import static org.springframework.web.reactive.function.server.RequestPredicates.PUT;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 @Configuration
@@ -22,6 +23,7 @@ public class OrderRouterConfig {
     public RouterFunction<ServerResponse> route(final OrderFacade orderFacade) {
         return RouterFunctions.route(GET(API_ORDER_PATH), orderFacade::getOrders)
                 .andRoute(POST(API_ORDER_PATH)
-                        .and(accept(APPLICATION_JSON)), orderFacade::createOrder);
+                        .and(accept(APPLICATION_JSON)), orderFacade::createOrder)
+                .andRoute(PUT(API_ORDER_PATH).and(accept(APPLICATION_JSON)), orderFacade::updateOrder);
     }
 }
