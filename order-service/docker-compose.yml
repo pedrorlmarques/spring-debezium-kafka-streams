@@ -49,6 +49,10 @@ services:
       DEBUG_SUSPEND_FLAG: n
       JAVA_DEBUG_PORT: 0.0.0.0:5005
 
+  # wal_level determines how much information is written to the WAL
+  # logical adds information necessary to support logical decoding
+  # Logical decoding is the process of extracting all persistent changes to a database's tables into a coherent,
+  # easy to understand format which can be interpreted without detailed knowledge of the database's internal state.
   orders-postgresql:
     image: postgres:12.3
     environment:
